@@ -1,9 +1,12 @@
 <?php
+include "header.inc.php";
+
+//accée à la banque de donnée
 try
 {
 	$bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 }
-catch(Exception $e)
+catch(Exception $e) // verification d'erreur
 {
         die('Erreur : '.$e->getMessage());
 }
@@ -22,16 +25,14 @@ catch(Exception $e)
 </form>
 
 <?php
-$reponse = $bdd->query('SELECT login,message FROM utilisateur');
-while ($donnees = $reponse->fetch())
+$reponse = $bdd->query('SELECT login,message FROM utilisateur'); //recupere les information du serveur
+while ($donnees = $reponse->fetch()) //selectione les information pas ligne (genre de for ... each)
 {
 ?>
-    <p>
-    <strong>Identifiant</strong> : <?php echo $donnees['login']; ?><br />
-    <p><?php echo $donnees['message']?></p>
-   </p>
+    <strong class="login"><?php echo $donnees['login']; ?></strong><br />
+    <p class="message"><?php echo $donnees['message']?></p>
 <?php
 }
 
-$reponse->closeCursor(); // Termine le traitement de la requête
+$reponse->closeCursor(); // stop la requette
 ?>
