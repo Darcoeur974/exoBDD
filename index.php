@@ -1,1 +1,1 @@
-<?php header('Location: minichat.php'); ?>
+<?php header('Location: php/minichat.php'); ?>
