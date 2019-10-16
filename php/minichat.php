@@ -27,6 +27,13 @@ catch(Exception $e) // verification d'erreur
 <?php
 $reponse = $bdd->query('SELECT login,message FROM utilisateur'); //recupere les information du serveur
 while ($donnees = $reponse->fetch()) //selectione les information pas ligne (genre de for ... each)
+
+/*
+                    while ($donnees = $reponse->fetch())
+Le fetch renvoie faux (false) dans $donnees lorsqu'il est arrivé à la fin des données, 
+c'est-à-dire que toutes les entrées ont été passées en revue. 
+Dans ce cas, la condition du while vaut faux et la boucle s'arrête.
+*/
 {
 ?>
     <strong class="login"><?php echo $donnees['login']; ?></strong><br />
@@ -34,5 +41,5 @@ while ($donnees = $reponse->fetch()) //selectione les information pas ligne (gen
 <?php
 }
 
-$reponse->closeCursor(); // stop la requette
+$reponse->closeCursor(); // stop la requête
 ?>
